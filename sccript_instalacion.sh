@@ -2,7 +2,7 @@
 
 apt-get install proftpd -y
 if [ "$?" != "0" ]; then echo "Error instlacion"; exit 1; fi
-cp /proftpd.conf /etc/proftpd/
+cp proftpd.conf /etc/proftpd/
 if [ "$?" != "0" ]; then echo "Copiadno Archivo de configuracion "; exit 1; fi
 addgroup ftp
 if [ "$?" != "0" ]; then echo "Creando Grupo de trabajo"; exit 1; fi
@@ -20,3 +20,5 @@ chown ftp:ftp down
 if [ "$?" != "0" ]; then echo "Haciendo propietario directorio bajada"; exit 1; fi
 chown ftp:ftp up
 if [ "$?" != "0" ]; then echo "Haciendo propietario directorio subida"; exit 1; fi
+service proftpd restart
+if [ "$?" != "0" ]; then echo "Reiniciando Servidor"; exit 1; fi
